@@ -20,3 +20,17 @@ output "windows-vm1-public-ip" {
   value       = azurerm_public_ip.morsh-pip1.ip_address
   description = "Admin username of windows vm1"
 }
+
+output "ssh_key_server_pub" {
+  value     = data.ansiblevault_path.ssh_server_pub.value
+  sensitive = true
+}
+
+output "jfrog_artifactory_super_admin_user" {
+  value = data.ansiblevault_path.jfrog_artifacory_super_user.value
+}
+
+output "jfrog_artifactory_super_admin_password" {
+  value     = data.ansiblevault_path.jfrog_artifacory_super_user_password.value
+  sensitive = true
+}
