@@ -5,9 +5,9 @@ locals {
   ansible_template = templatefile(
     "${path.module}/templates/ansible_inventory_template.tpl",
     {
-      user     = var.useros,
-      ip       = module.morsh_instance_ya_1.external_ip_address_morsh_server,
-      hostname = module.morsh_instance_ya_1.hostname_morsh_server
+      user1     = module.morsh_instance_windows_az_1.windows_admin_username,
+      ip1       = azurerm_public_ip.morsh-pip1.ip_address,
+      hostname1 = module.morsh_instance_windows_az_1.windows_vm_hostname
     }
   )
 
