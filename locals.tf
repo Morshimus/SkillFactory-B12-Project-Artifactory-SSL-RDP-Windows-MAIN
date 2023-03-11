@@ -1,6 +1,6 @@
 locals {
 
-  azure_auth = jsondecode(file("${path.module}/key.json"))
+  azure_auth = jsondecode(file("${path.module}/azure_key.json"))
 
   ansible_template = templatefile(
     "${path.module}/templates/ansible_inventory_template.tpl",

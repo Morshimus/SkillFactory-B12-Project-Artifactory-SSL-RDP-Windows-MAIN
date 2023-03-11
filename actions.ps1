@@ -6,7 +6,7 @@ function init {
      [Parameter(Mandatory=$false, Position=0)]
      [switch]$upgrade,
      [Parameter(Mandatory=$false, Position=0)]
-     [string]$cloud_provider="yandex"  
+     [string]$cloud_provider="azure"  
      )
     
     if($cloud_provider -like "yandex"){ 
@@ -34,6 +34,15 @@ function init {
      --backend-config=secret_key=$($S3_SECRET_KEY) `
      --backend-config=access_key=$($S3_ACCESS_KEY)
      }
+    }elseif($cloud_provider -like "azure"){
+        if($reconfigure){
+            terraform init -reconfigure 
+            }elseif($upgrade){
+            terraform init -upgrade 
+            }else{
+            terraform init 
+        }
+          
     } 
 }
 
