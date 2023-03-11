@@ -5,7 +5,7 @@
 *.tfstate
 *.tfstate.*
 *.lock.hcl
-key.json
+*key.json
 plantf
 morsh_*_SSH
 morsh_*_SSH.pub
