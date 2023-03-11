@@ -9,7 +9,7 @@ repos:
   rev: $VERSION # Get the latest from: $REPO/releases
   hooks:
     - id: terraform_fmt
-    - id: terraform_validate
+    # - id: terraform_validate not working in Windows
     - id: terraform_checkov
       args:
         - --args=--skip-check CKV_SECRET_13

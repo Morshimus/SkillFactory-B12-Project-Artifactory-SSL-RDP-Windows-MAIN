@@ -1,10 +1,10 @@
 provider "azurerm" {
   features {}
 
-  client_id       =  local.azure_auth.appId
-  client_secret   =  local.azure_auth.password
-  tenant_id       =  local.azure_auth.tenantId
-  subscription_id =  local.azure_auth.subscriptionId
+  client_id       = local.azure_auth.appId
+  client_secret   = local.azure_auth.password
+  tenant_id       = local.azure_auth.tenantId
+  subscription_id = local.azure_auth.subscriptionId
 }
 
 provider "ansiblevault" {

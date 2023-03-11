@@ -6,10 +6,10 @@ resource "azurerm_windows_virtual_machine" "morsh-windows-vm" {
   size                  = var.size
   network_interface_ids = var.network_nics
   tags                  = local.labels
-  
-  computer_name         = "morsh-${var.prefix}"
-  admin_username        = var.admin_username
-  admin_password        = var.admin_password
+
+  computer_name  = "morsh-${var.prefix}"
+  admin_username = var.admin_username
+  admin_password = var.admin_password
 
 
   lifecycle {
@@ -36,11 +36,12 @@ resource "azurerm_windows_virtual_machine" "morsh-windows-vm" {
     sku       = var.image_sku
     version   = var.image_ver
   }
-  enable_automatic_updates = true
-  provision_vm_agent       = true
-  
+  enable_automatic_updates   = true
+  provision_vm_agent         = true
+  allow_extension_operations = false
+  encryption_at_host_enabled = true
   winrm_listener {
-    protocol = var.winrm.protocol 
+    protocol = var.winrm.protocol
     #certificate_url = var.winrm.certificate_url
   }
 

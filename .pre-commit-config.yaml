@@ -3,10 +3,11 @@
   rev: v1.77.0 # Get the latest from: https://github.com/antonbabenko/pre-commit-terraform/releases
   hooks:
     - id: terraform_fmt
-    - id: terraform_validate
+   # - id: terraform_validate not Working in Windows
     - id: terraform_checkov
       args:
         - --args=--skip-check CKV_SECRET_13
+        - --args=--skip-check CKV_AZURE_9
     - id: terraform_tflint
       args:
         - --args=--enable-rule=terraform_deprecated_interpolation

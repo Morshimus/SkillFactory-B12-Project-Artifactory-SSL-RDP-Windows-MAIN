@@ -1,8 +1,8 @@
 # Set the private and public IP 
 resource "azurerm_network_interface" "morsh-ni" {
-  name                      = "${var.prefix}-ni"
-  location                  = var.location
-  resource_group_name       = var.rsg
+  name                = "${var.prefix}-ni"
+  location            = var.location
+  resource_group_name = var.rsg
   #network_security_group_id = var.nsg_id
 
   # dynamic IP configuration
