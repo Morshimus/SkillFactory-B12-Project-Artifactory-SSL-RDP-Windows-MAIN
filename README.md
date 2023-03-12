@@ -1,6 +1,6 @@
 # SkillFactory-B12-Project-Artifactory-SSL-RDP-Windows-MAIN
 
-## [Roles][https://github.com/Morshimus/SkillFactory-B12-Project-Artifactory-SSL-RDP-Windows-Roles]
+## [Roles](https://github.com/Morshimus/SkillFactory-B12-Project-Artifactory-SSL-RDP-Windows-Roles)
 
 ## Задание:
 * [x] - :one: **Создайте в ~~Я.Облаке~~ Azure виртуальную машину под управлением Linux. Это будет ВМ для УЦ.**
