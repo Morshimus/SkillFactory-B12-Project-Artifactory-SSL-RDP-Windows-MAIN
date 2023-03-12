@@ -1,5 +1,6 @@
 # SkillFactory-B12-Project-Artifactory-SSL-RDP-Windows-MAIN
 
+## [Roles][https://github.com/Morshimus/SkillFactory-B12-Project-Artifactory-SSL-RDP-Windows-Roles]
 
 ## Задание:
 * [x] - :one: **Создайте в ~~Я.Облаке~~ Azure виртуальную машину под управлением Linux. Это будет ВМ для УЦ.**
@@ -121,3 +122,6 @@ module "morsh_instance_linux_az_1" {
 | <a name="output_windows-vm1-private-ip"></a> [windows-vm1-private-ip](#output\_windows-vm1-private-ip) | Azure windows vm1 private ip |
 | <a name="output_windows-vm1-public-ip"></a> [windows-vm1-public-ip](#output\_windows-vm1-public-ip) | Azure windows vm1 public ip |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
+
+[def]: https://github.com/Morshimus/SkillFactory-B12-Project-Artifactory-SSL-RDP-Windows-Roles

@@ -1,0 +1,4 @@
+---
+- src: https://github.com/Morshimus/SkillFactory-B12-Project-Artifactory-SSL-RDP-Windows-Roles
+  name: common
+  scm: git 
