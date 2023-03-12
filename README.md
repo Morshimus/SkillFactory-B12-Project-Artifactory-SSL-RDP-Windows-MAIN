@@ -30,7 +30,26 @@ module "morsh_instance_linux_az_1" {
 * [ ] - :two: **Создайте новую внутреннюю доменную зону (используя ~~Yandex Cloud~~ Azure DNS), затем добавьте в эту зону новую DNS-запись, указывающую на машину с Artifactory. Доменное имя используйте любое на свое усмотрение.**
 * [ ] - :three: **На ВМ для УЦ создайте корневой и серверный сертификат для вашей машины (для выбранного вами доменного имени).**
 * [ ] - :four: **Настройте Artifatory на использование SSL и созданного вами сертификата. (Выбирайте любой из вариантов: настройка SSL на TomCat, работающем с Artifactory веб-сервере, либо настройка связки nginx+Artifactory).**
-* [ ] - :five: **Создайте еще одну машину в ~~Я.Облаке~~ Azure, теперь под управлением Windows. Она потребуется для проверки выполнения задания.**
+* [x] - :five: **Создайте еще одну машину в ~~Я.Облаке~~ Azure, теперь под управлением Windows. Она потребуется для проверки выполнения задания.**
+> Машина создана из Terraform, открыты порты RDP и WinRM.
+
+```hcl
+module "morsh_instance_windows_az_1" {
+
+  source         = "./INSTANCE_WINDOWS"
+  appId          = local.azure_auth.appId
+  password       = local.azure_auth.password
+  tenantId       = local.azure_auth.tenantId
+  subscriptionId = local.azure_auth.subscriptionId
+  rsg            = azurerm_resource_group.morsh-rsg.name
+  location       = azurerm_resource_group.morsh-rsg.location
+  network_nics   = [module.morsh_instance_windows_az_nic1.azure_nic_id]
+  prefix         = "win-s1"
+  admin_password = data.ansiblevault_path.windows_admin_password.value
+}
+```
+
+
 * [ ] - :six: **Установите созданный вами корневой сертификат на вашу ВМ под управлением Windows. (Созданное выше доменное имя будет работать только на машинах из ~~Я.Облака~~ Azure, поэтому проверить настройки с помощью своего ноутбука не выйдет).**
 * [ ] - :seven: **С помощью веб-браузера зайдите (по HTTPS-протоколу) на машину, где развернут Artifactory, и убедитесь, что соединение защищено.**
 * [ ] - :eight: **Отправьте ментору скриншот с подтверждением защищенного соединения, доменное имя вашей машины и порт, на котором работает Artifactory.**
