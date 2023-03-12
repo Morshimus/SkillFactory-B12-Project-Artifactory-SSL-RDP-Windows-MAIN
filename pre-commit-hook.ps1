@@ -38,7 +38,7 @@ repos:
       args:
         - --args=--path=.
         - --hook-config='.totalHourlyCost|tonumber > 0.1'
-        - --hook-config='.projects[].diff.totalHourlyCost|tonumber != 10'
+        - --hook-config='.projects[].diff.totalHourlyCost|tonumber != 2'
         - --hook-config='.projects[].diff.totalMonthlyCost|tonumber != 100'
         - --hook-config='.currency == "USD"'
 "@ 
