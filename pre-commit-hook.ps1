@@ -12,7 +12,10 @@ repos:
     # - id: terraform_validate not working in Windows
     - id: terraform_checkov
       args:
-        - --args=--skip-check CKV_SECRET_13
+        - --args=--skip-check CKV_SECRET_13 # Secrets json under project dir - in gitignore.
+        - --args=--skip-check CKV_AZURE_9 # RDP is used for study project to open Artifactory
+        - --args=--skip-check CKV_AZURE_151 # Encryption Not used in studying project
+        - --args=--skip-check CKV_AZURE_10  # Allow ssh for Ansible to linux host
     - id: terraform_tflint
       args:
         - --args=--enable-rule=terraform_deprecated_interpolation
@@ -31,6 +34,13 @@ repos:
         - --hook-config=--path-to-file=README.md        # Valid UNIX path. I.e. ../TFDOC.md or docs/README.md etc.
         - --hook-config=--add-to-existing-file=true     # Boolean. true or false
         - --hook-config=--create-file-if-not-exist=true # Boolean. true or false
+    - id: infracost_breakdown
+      args:
+        - --args=--path=.
+        - --hook-config='.totalHourlyCost|tonumber > 0.1'
+        - --hook-config='.projects[].diff.totalHourlyCost|tonumber != 10'
+        - --hook-config='.projects[].diff.totalMonthlyCost|tonumber != 100'
+        - --hook-config='.currency == "USD"'
 "@ 
 
-Write-Output  $raw | Set-Content -Encoding UTF8 .\.pre-commit-config.yaml
+Write-Output  $raw | Set-Content -Encoding UTF8 .\.pre-commit-config.yaml -Force

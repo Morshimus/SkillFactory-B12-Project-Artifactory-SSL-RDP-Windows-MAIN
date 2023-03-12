@@ -11,7 +11,7 @@ morsh_*_SSH
 morsh_*_SSH.pub
 adm-user_SSH
 adm-user_SSH.pub
-yandex_cloud.ini
+*_cloud.ini
 **/molecule/*
 **/roles/*
 .tmp

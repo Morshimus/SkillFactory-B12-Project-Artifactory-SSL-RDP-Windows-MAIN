@@ -8,3 +8,15 @@ output "windows_admin_username" {
   description = "Azure Windows VM admin username"
 }
 
+
+output "windows_vm_public_ip" {
+  value       = azurerm_windows_virtual_machine.morsh-windows-vm.public_ip_address
+  description = "Azure Windows VM public ip"
+}
+
+
+output "windows_vm_private_ip" {
+  value       = azurerm_windows_virtual_machine.morsh-windows-vm.private_ip_address
+  description = "Azure Windows VM private ip"
+}
+

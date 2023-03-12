@@ -36,9 +36,16 @@ variable "storage_account_type" {
 }
 
 
+variable "encryption" {
+  type        = bool
+  default     = false
+  description = "Azure Encryption for VM data"
+}
+
+
 variable "size" {
   type        = string
-  default     = "Standard_B1s"
+  default     = "Standard_B2ms"
   description = "Azure size of vm cpu and memory perfomance"
 }
 
@@ -62,7 +69,7 @@ variable "winrm" {
   default = (
     {
       protocol        = "Http"
-      certificate_url = ""
+      certificate_url = null
     }
   )
   description = "Azure VM Windows winrm service listener"

@@ -17,13 +17,40 @@ output "windows-vm1-admin-password" {
 }
 
 output "windows-vm1-public-ip" {
-  value       = azurerm_public_ip.morsh-pip1.ip_address
-  description = "Admin username of windows vm1"
+  value       = module.morsh_instance_windows_az_1.windows_vm_public_ip
+  description = "Azure windows vm1 public ip"
 }
+
+output "windows-vm1-private-ip" {
+  value       = module.morsh_instance_windows_az_1.windows_vm_private_ip
+  description = "Azure windows vm1 private ip"
+}
+
 
 output "ssh_key_server_pub" {
   value     = data.ansiblevault_path.ssh_server_pub.value
   sensitive = true
+}
+
+output "linux-vm1-hostname" {
+  value       = module.morsh_instance_linux_az_1.linux_vm_hostname
+  description = "Hostname of linux vm1"
+}
+
+
+output "linux-vm1-admin-username" {
+  value       = module.morsh_instance_linux_az_1.linux_admin_username
+  description = "Admin username of linux vm1"
+}
+
+output "linux-vm1-public-ip" {
+  value       = module.morsh_instance_linux_az_1.linux_vm_public_ip
+  description = "Azure linux vm1 public ip"
+}
+
+output "linux-vm1-private-ip" {
+  value       = module.morsh_instance_linux_az_1.linux_vm_private_ip
+  description = "Azure linux vm1 private ip"
 }
 
 output "jfrog_artifactory_super_admin_user" {
@@ -34,3 +61,4 @@ output "jfrog_artifactory_super_admin_password" {
   value     = data.ansiblevault_path.jfrog_artifacory_super_user_password.value
   sensitive = true
 }
+

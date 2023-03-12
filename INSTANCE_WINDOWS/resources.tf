@@ -39,10 +39,11 @@ resource "azurerm_windows_virtual_machine" "morsh-windows-vm" {
   enable_automatic_updates   = true
   provision_vm_agent         = true
   allow_extension_operations = false
-  encryption_at_host_enabled = true
+  encryption_at_host_enabled = var.encryption
+
   winrm_listener {
-    protocol = var.winrm.protocol
-    #certificate_url = var.winrm.certificate_url
+    protocol        = var.winrm.protocol
+    certificate_url = var.winrm.certificate_url
   }
 
 }
