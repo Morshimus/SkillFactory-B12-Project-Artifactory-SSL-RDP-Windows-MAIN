@@ -2,7 +2,30 @@
 
 
 ## Задание:
-* [ ] - :one: **Создайте в ~~Я.Облаке~~ Azure виртуальную машину под управлением Linux. Это будет ВМ для УЦ.**
+* [x] - :one: **Создайте в ~~Я.Облаке~~ Azure виртуальную машину под управлением Linux. Это будет ВМ для УЦ.**
+> Сделано, создание в Azure влечет за собой создание ресурс группы - было решено что будет создана 1 ресурс группа для обоих ВМ.ВМ на линукс Ubuntu-22-04 успешно создается из Terraform.
+
+```
+module "morsh_instance_linux_az_1" {
+
+  source         = "./INSTANCE_LINUX"
+  appId          = local.azure_auth.appId
+  password       = local.azure_auth.password
+  tenantId       = local.azure_auth.tenantId
+  subscriptionId = local.azure_auth.subscriptionId
+  rsg            = azurerm_resource_group.morsh-rsg.name
+  location       = azurerm_resource_group.morsh-rsg.location
+  network_nics   = [module.morsh_instance_linux_az_nic1.azure_nic_id]
+  prefix         = "lin-s1"
+  admin_ssh = ({
+
+    username   = "morsh-adm"
+    public_key = data.ansiblevault_path.ssh_server_pub.value
+
+  })
+
+}
+```
 * [ ] - :two: **Создайте новую внутреннюю доменную зону (используя ~~Yandex Cloud~~ Azure DNS), затем добавьте в эту зону новую DNS-запись, указывающую на машину с Artifactory. Доменное имя используйте любое на свое усмотрение.**
 * [ ] - :three: **На ВМ для УЦ создайте корневой и серверный сертификат для вашей машины (для выбранного вами доменного имени).**
 * [ ] - :four: **Настройте Artifatory на использование SSL и созданного вами сертификата. (Выбирайте любой из вариантов: настройка SSL на TomCat, работающем с Artifactory веб-сервере, либо настройка связки nginx+Artifactory).**
