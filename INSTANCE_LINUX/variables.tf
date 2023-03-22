@@ -45,7 +45,7 @@ variable "encryption" {
 
 variable "size" {
   type        = string
-  default     = "Standard_B1s"
+  default     = "Standard_B2ms"
   description = "Azure size of vm cpu and memory perfomance"
 }
 

@@ -41,7 +41,7 @@ No modules.
 | <a name="input_password"></a> [password](#input\_password) | Azure SP account application password | `string` | n/a | yes |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | Azure VM prefix | `string` | `"server"` | no |
 | <a name="input_rsg"></a> [rsg](#input\_rsg) | Azure name of resource group | `string` | n/a | yes |
-| <a name="input_size"></a> [size](#input\_size) | Azure size of vm cpu and memory perfomance | `string` | `"Standard_B1s"` | no |
+| <a name="input_size"></a> [size](#input\_size) | Azure size of vm cpu and memory perfomance | `string` | `"Standard_B2ms"` | no |
 | <a name="input_storage_account_type"></a> [storage\_account\_type](#input\_storage\_account\_type) | Azure OS disk storage account type | `string` | `"Standard_LRS"` | no |
 | <a name="input_subscriptionId"></a> [subscriptionId](#input\_subscriptionId) | Azure subscription Id | `string` | n/a | yes |
 | <a name="input_tenantId"></a> [tenantId](#input\_tenantId) | Azure TenantID | `string` | n/a | yes |

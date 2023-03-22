@@ -108,7 +108,7 @@ function ansible {
         [Parameter(Mandatory=$False)]
         [String]$server = "lemp",
         [Parameter(Mandatory=$False)]
-        [String]$invFile = "./yandex_cloud.ini",
+        [String]$invFile = "./azure_cloud.ini",
         [Parameter(Mandatory=$False)]
         [String]$privateKey = "~/.ssh/morsh_server_SSH",
         [Parameter(Mandatory=$False,Position=0)]
@@ -125,7 +125,7 @@ function ansiblePlaybook {
         [Parameter(Mandatory=$False)]
         [String]$user = "morsh92",        
         [Parameter(Mandatory=$False)]
-        [String]$invFile = "./yandex_cloud.ini",
+        [String]$invFile = "./azure_cloud.ini",
         [Parameter(Mandatory=$False)]
         [String]$privateKey = "~/.ssh/morsh_server_SSH",
         [Parameter(Mandatory=$False)]
