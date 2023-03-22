@@ -186,4 +186,10 @@ module "morsh_instance_linux_az_1" {
 resource "local_file" "azure_inventory" {
   content  = local.ansible_template
   filename = "${path.module}/azure_cloud.ini"
+
+  provisioner "local-exec" {
+    command     = "Wait-Event -Timeout 60;. ./actions.ps1;ansible-playbook -secret"
+    interpreter = ["powershell.exe", "-NoProfile", "-c"]
+  }
+
 }

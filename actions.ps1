@@ -131,7 +131,7 @@ function ansiblePlaybook {
         [Parameter(Mandatory=$False)]
         [String]$Playbook = "./provisioning.yaml",
         [Parameter(Mandatory=$False,Position=0)]
-        [string]$fileSecrets = '~/.vault_pass_B9',
+        [string]$fileSecrets = '~/.vault_pass_B12',
         [Parameter(Mandatory=$False,Position=0)]
         [switch]$tagTST,
         [Parameter(Mandatory=$False,Position=0)]
