@@ -91,13 +91,25 @@ resource "azurerm_network_security_group" "morsh-nsg2" {
   resource_group_name = azurerm_resource_group.morsh-rsg.name
 
   security_rule {
-    name                       = "Https"
+    name                       = "jfrog-http"
+    priority                   = 120
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = 8082
+    source_address_prefix      = "*"
+    destination_address_prefix = var.add_subnet1[0]
+  }
+
+  security_rule {
+    name                       = "jfrog-https"
     priority                   = 110
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "Tcp"
     source_port_range          = "*"
-    destination_port_range     = 443
+    destination_port_range     = 8443
     source_address_prefix      = "*"
     destination_address_prefix = var.add_subnet1[0]
   }
