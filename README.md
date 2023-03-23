@@ -27,11 +27,29 @@ module "morsh_instance_linux_az_1" {
 
 }
 ```
-* [ ] - :two: **Создайте новую внутреннюю доменную зону (используя ~~Yandex Cloud~~ Azure DNS), затем добавьте в эту зону новую DNS-запись, указывающую на машину с Artifactory. Доменное имя используйте любое на свое усмотрение.**
-* [ ] - :three: **На ВМ для УЦ создайте корневой и серверный сертификат для вашей машины (для выбранного вами доменного имени).**
-* [ ] - :four: **Настройте Artifatory на использование SSL и созданного вами сертификата. (Выбирайте любой из вариантов: настройка SSL на TomCat, работающем с Artifactory веб-сервере, либо настройка связки nginx+Artifactory).**
+* [x] - :two: **~~Создайте новую внутреннюю доменную зону (используя ~~Yandex Cloud~~ Azure DNS), затем добавьте в эту зону новую DNS-запись, указывающую на машину с Artifactory. Доменное имя используйте любое на свое усмотрение~~**
+> Я подкинкинул запись в %Systemroot%\System32\drivers\etc\hosts. Лучше делать через хостинг..
+
+* [x] - :three: **~~На ВМ для УЦ создайте корневой и серверный сертификат для вашей машины (для выбранного вами доменного имени).~~ Взял серт временный с работы - он валидный, для теста**
+> Взял серт временный с работы - он валидный, для теста. А так если есть свой хостинг можно автоматизировать через acme.
+
+* [x] - :four: **~~Настройте Artifatory на использование SSL и созданного вами сертификата. (Выбирайте любой из вариантов: настройка SSL на ~~TomCat, работающем с Artifactory веб-сервере,~~ либо настройка связки nginx+Artifactory).~~**
+> Был сделан наименее ресурсно затратный вариант
+
+```yaml
+artifactory:
+    tomcat:
+         httpsConnector:
+                 enabled: true
+                 port: 8443
+                 certificateFile: /opt/jfrog/artifactory/var/etc/artifactory/security/ssl/server.crt
+                 certificateKeyFile: /opt/jfrog/artifactory/var/etc/artifactory/security/ssl/server.key
+access:
+     ...
+```
+
 * [x] - :five: **Создайте еще одну машину в ~~Я.Облаке~~ Azure, теперь под управлением Windows. Она потребуется для проверки выполнения задания.**
-> Машина создана из Terraform, открыты порты RDP и WinRM.
+> Машина создана из Terraform, открыты порты RDP и WinRM. Также открыты порты внутри группы - 8443 artifactory и 8082 access.
 
 ```hcl
 module "morsh_instance_windows_az_1" {
@@ -50,9 +68,20 @@ module "morsh_instance_windows_az_1" {
 ```
 
 
-* [ ] - :six: **Установите созданный вами корневой сертификат на вашу ВМ под управлением Windows. (Созданное выше доменное имя будет работать только на машинах из ~~Я.Облака~~ Azure, поэтому проверить настройки с помощью своего ноутбука не выйдет).**
-* [ ] - :seven: **С помощью веб-браузера зайдите (по HTTPS-протоколу) на машину, где развернут Artifactory, и убедитесь, что соединение защищено.**
-* [ ] - :eight: **Отправьте ментору скриншот с подтверждением защищенного соединения, доменное имя вашей машины и порт, на котором работает Artifactory.**
+* [x] - :six: **~~Установите созданный вами корневой сертификат на вашу ВМ под управлением Windows. (Созданное выше доменное имя будет работать только на машинах из ~~Я.Облака~~ Azure, поэтому проверить настройки с помощью своего ноутбука не выйдет).~~**
+> Все так, только если сертфикат заверен глобальным трастовым центром эти танцы не нужны.
+
+* [x] - :seven: **~~С помощью веб-браузера зайдите (по HTTPS-протоколу) на машину, где развернут Artifactory, и убедитесь, что соединение защищено.~~**
+> Внизу скрины.
+
+* [x] - :eight: **Отправьте ментору скриншот с подтверждением защищенного соединения, доменное имя вашей машины и порт, на котором работает Artifactory.**
+
+![image](https://ams03pap004files.storage.live.com/y4mPwMwTQ1F19WuiQ6i-iHbK0YYylyvQwPm_l2UWGMZcR64YFJJHohdXne0FMSmncqdMtSN1pR50KC69f1zu7yygnANA-_bmb4EkZ3Jx0rYwVpKtI6Bl9aKoSinqApXkNj-4FxizEMWTJwohAIyBLVxXs2BYewu9Y-3hUMo14r2rfy6OBI8IwIG9LlGhUeEjwst?encodeFailures=1&width=1549&height=801)
+
+![image](https://ams03pap004files.storage.live.com/y4mpjIClHUOIlMgE5vbbVmrnppYECc0ixbmS9My4aVzUGF0QuC4C8y40pttVXc3QJgxKdwLZsI0VJNDQBNFUYwRXmJGX8P2Z15XoKA_LnQupXc_DzKjwqlp-Lnvrn2UdEJrumbqL80Z5ul7HQiSGexmjhXgV5YGjFYsODBaGCFaGi8nxf3rdHJNUpVO1GxR8dFB?encodeFailures=1&width=789&height=801)
+
+
+*А еще я посчитал инфракост, так как Azure не дешевый*
 
 # Infracost Azure:
 
