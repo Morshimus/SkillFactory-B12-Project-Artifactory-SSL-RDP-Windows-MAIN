@@ -85,18 +85,19 @@ module "morsh_instance_windows_az_1" {
 
 # Infracost Azure:
 
-| version              | 0.2                         |
-|----------------------|-----------------------------|
-| metadata             | [object Object]             |
-| currency             | USD                         |
-| projects             | B12                         |
-| totalHourlyCost      | 0.1282082191780820992       |
-| totalMonthlyCost     | 93.592                      |
-| pastTotalHourlyCost  | 0.1282082191780820992       |
-| pastTotalMonthlyCost | 93.592                      |
-| diffTotalHourlyCost  | 0                           |
-| diffTotalMonthlyCost | 0                           |
-| timeGenerated        | 2023-03-12T17:13:03.232146Z |
+| version              | 0.2                          |
+|----------------------|------------------------------|
+| metadata             | [object Object]              |
+| currency             | USD                          |
+| projects             | B12              |
+| totalHourlyCost      | 0.2122082191780820992        |
+| totalMonthlyCost     | 154.912                      |
+| pastTotalHourlyCost  | 0.2122082191780820992        |
+| pastTotalMonthlyCost | 154.912                      |
+| diffTotalHourlyCost  | 0                            |
+| diffTotalMonthlyCost | 0                            |
+| timeGenerated        | 2023-03-23T14:23:28.8956898Z |
+
 
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
