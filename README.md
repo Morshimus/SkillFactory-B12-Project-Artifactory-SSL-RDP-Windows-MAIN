@@ -6,6 +6,8 @@
 * [x] - :one: **Создайте в ~~Я.Облаке~~ Azure виртуальную машину под управлением Linux. Это будет ВМ для УЦ.**
 > Сделано, создание в Azure влечет за собой создание ресурс группы - было решено что будет создана 1 ресурс группа для обоих ВМ.ВМ на линукс Ubuntu-22-04 успешно создается из Terraform.
 
+```mermaid
+
 graph LR
 
 subgraph Resource Group
@@ -61,6 +63,8 @@ nic1 --> win_vm
 nic2 --> linux_vm
 file --> win_vm
 file --> linux_vm
+
+```
 
 ```hcl
 module "morsh_instance_linux_az_1" {
