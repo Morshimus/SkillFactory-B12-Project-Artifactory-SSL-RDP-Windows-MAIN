@@ -6,6 +6,62 @@
 * [x] - :one: **Создайте в ~~Я.Облаке~~ Azure виртуальную машину под управлением Linux. Это будет ВМ для УЦ.**
 > Сделано, создание в Azure влечет за собой создание ресурс группы - было решено что будет создана 1 ресурс группа для обоих ВМ.ВМ на линукс Ubuntu-22-04 успешно создается из Terraform.
 
+graph LR
+
+subgraph Resource Group
+    rg[azurerm_resource_group.morsh-rsg]
+end
+
+subgraph Virtual Network
+    vnet[azurerm_virtual_network.morsh-vnet]
+end
+
+subgraph Subnet
+    subnet[azurerm_subnet.morsh-subnet1]
+end
+
+subgraph Public IP Addresses
+    pip1[azurerm_public_ip.morsh-pip1]
+    pip2[azurerm_public_ip.morsh-pip2]
+end
+
+subgraph Network Security Groups
+    nsg1[azurerm_network_security_group.morsh-nsg1]
+    nsg2[azurerm_network_security_group.morsh-nsg2]
+end
+
+subgraph NIC Modules
+    nic1[morsh_instance_windows_az_nic1]
+    nic2[morsh_instance_linux_az_nic1]
+end
+
+subgraph Windows VM Module
+    win_vm[morsh_instance_windows_az_1]
+end
+
+subgraph Linux VM Module
+    linux_vm[morsh_instance_linux_az_1]
+end
+
+subgraph Local File
+    file[local_file.azure_inventory]
+end
+
+rg --> vnet
+vnet --> subnet
+rg --> pip1
+rg --> pip2
+rg --> nsg1
+rg --> nsg2
+vnet --> nic1
+vnet --> nic2
+subnet --> nic1
+subnet --> nic2
+nic1 --> win_vm
+nic2 --> linux_vm
+file --> win_vm
+file --> linux_vm
+
 ```hcl
 module "morsh_instance_linux_az_1" {
 
